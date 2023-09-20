@@ -16,8 +16,25 @@ app.get('/:user/:pass', (req, res) => {
     res.json({msg: 'Error en el usuario o contraseña'})
 })
 
+// http://localhost:3000/login?user=gerardo&password=123&email=gerardoquiroga718@gmail.com
+
+app.get('/login',(req, res)=> {
+    const {user, password} = req.query
+
+    if(!user || !password){
+        res.status(400).json({msg: 'you need to provide <user> and <password> parameters'})
+    return
+    }
+
+    if (user === 'gerardo' && password === '123'){
+        res.json({msg: 'Iniciaste sesión con éxito'})
+    }
+    res.status(404).json({msg: 'Error en el usuario o contraseña'})
+    return
+})
+
 //http://localhost:3000/
-app.get('/', (req, res) => {
+app.get('/', (req, res) => { //Endpoint
     res.send("Hello with GET!")
 })
 
